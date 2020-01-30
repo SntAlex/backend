@@ -10,18 +10,19 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
+@SuppressWarnings("ALL")
 @RestController
 @Api(description = "Запросы для работы с предметами")
 public class SubjectsController {
     private static final String SUBJECTS_PATH = "/api/v001/days/";
-    private SubjectsService subjectsService;
+    private final SubjectsService subjectsService;
 
     @Autowired
-    public SubjectsController(SubjectsService subjectsService){
+    public SubjectsController(SubjectsService subjectsService) {
         this.subjectsService = subjectsService;
     }
 
-    @PostMapping(SUBJECTS_PATH+"/{dayName}")
+    @PostMapping(SUBJECTS_PATH + "/{dayName}")
     @ApiOperation(value = "Добавление предмета")
     public ResponseEntity<?> addSubject(
             @PathVariable String dayName,
@@ -30,16 +31,16 @@ public class SubjectsController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping(SUBJECTS_PATH+"/{dayName}")
+    @GetMapping(SUBJECTS_PATH + "/{dayName}")
     @ApiOperation(value = "Получить все предметы в пределах дня")
     public ResponseEntity<Collection<Subject>> getAllSubjects(
             @PathVariable String dayName
     ) {
-        Collection<Subject>subjectCollection = subjectsService.getAllSubjects(dayName);
+        Collection<Subject> subjectCollection = subjectsService.getAllSubjects(dayName);
         return ResponseEntity.ok(subjectCollection);
     }
 
-    @PatchMapping(SUBJECTS_PATH+"/{dayName}")
+    @DeleteMapping(SUBJECTS_PATH + "/{dayName}")
     @ApiOperation(value = "Удаление всех предметов в пределах дня")
     public ResponseEntity<?> clearSubjects(
             @PathVariable String dayName
@@ -48,17 +49,17 @@ public class SubjectsController {
         return ResponseEntity.ok().build();
     }
 
-    @PatchMapping(SUBJECTS_PATH+"/{dayName}/{id}")
+    @DeleteMapping(SUBJECTS_PATH + "/{dayName}/{id}")
     @ApiOperation(value = "Удаление предмета")
-    public ResponseEntity<?> clearSubject(
+    public ResponseEntity<Void> clearSubject(
             @PathVariable String dayName,
             @PathVariable Integer id
-    ){
+    ) {
         subjectsService.clearSubject(dayName, id);
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping(SUBJECTS_PATH+"/{dayName}")
+    @PutMapping(SUBJECTS_PATH + "/{dayName}")
     @ApiOperation(value = "Изменение предмета")
     public ResponseEntity<?> changeSubject(
             @PathVariable String dayName,
@@ -68,12 +69,12 @@ public class SubjectsController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping(SUBJECTS_PATH+"/{dayName}/{id}")
+    @GetMapping(SUBJECTS_PATH + "/{dayName}/{id}")
     @ApiOperation(value = "Получить предмет из дня")
     public ResponseEntity<Subject> fetchSubject(
             @PathVariable String dayName,
             @PathVariable Integer id
-    ){
+    ) {
         Subject subject = subjectsService.fetchSubject(dayName, id);
         return ResponseEntity.ok(subject);
     }

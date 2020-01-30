@@ -8,22 +8,22 @@ import org.springframework.stereotype.Repository;
 public class PresidentRepository implements IPresident {
     private President president = new President();
 
-    PresidentRepository(){
+    PresidentRepository() {
         president.setName("Polina");
-        president.setPassword("Utkonosososo");
+        president.setPassword("11");
     }
 
 
     @Override
     public void setPresidentName(String name) {
-        if(name.isEmpty())
+        if (name.isEmpty())
             throw new BadRequest();
         president.setName(name);
     }
 
     @Override
     public void setPresidentPassword(String password) {
-        if(password.isEmpty())
+        if (password.isEmpty())
             throw new BadRequest();
         president.setPassword(password);
     }

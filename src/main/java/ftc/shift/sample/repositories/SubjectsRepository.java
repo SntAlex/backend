@@ -3,7 +3,6 @@ package ftc.shift.sample.repositories;
 import ftc.shift.sample.exception.BadRequest;
 import ftc.shift.sample.exception.NotFoundException;
 import ftc.shift.sample.models.Subject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Repository;
 
@@ -12,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Repository
+@ConditionalOnProperty(name = "use.database", havingValue = "false")
 public class SubjectsRepository implements ISubjects {
 
     private Map<String, Map<Integer, Subject>> dayCash = new HashMap<>();
@@ -35,7 +35,7 @@ public class SubjectsRepository implements ISubjects {
         if ((subjectCash.containsKey(subject.getId()))) {
             throw new BadRequest();
         }
-        subjectCash.put(subject.getId(),subject);
+        subjectCash.put(subject.getId(), subject);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class SubjectsRepository implements ISubjects {
             // У пользователя не найдена книга
             throw new NotFoundException();
         }
-        subjectCash.put(subject.getId(),subject);
+        subjectCash.put(subject.getId(), subject);
     }
 
     @Override
