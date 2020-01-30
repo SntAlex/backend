@@ -36,7 +36,7 @@ public class Subject {
 
     public void setId(Integer id){ this.id = id;}
     public void setName(String name){ this.name = name;}
-    public void setSubject(String audience){ this.audience = audience;}
-    public void setAudience(String time){this.time = time;}
-    public void setTime(String note){ this.note = note;}
+    public void setAudience(String audience){ this.audience = audience;}
+    public void setTime(String time){this.time = time;}
+    public void setNote(String note){ this.note = note;}
 }
