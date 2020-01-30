@@ -1,6 +1,7 @@
 package ftc.shift.sample.api;
 
 
+import ftc.shift.sample.models.President;
 import ftc.shift.sample.services.PresidentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -23,32 +24,10 @@ public class PresidentController {
         this.service = service;
     }
 
-    @GetMapping(PRESIDENT_PATH + "/password")
-    @ApiOperation(value = "Получение пароля старосты")
-    public ResponseEntity<String> getPresidentPassword() {
-        String password = service.getPresidentPassword();
-        return ResponseEntity.ok(password);
+    @GetMapping(PRESIDENT_PATH)
+    @ApiOperation(value = "Получение объекта старосты")
+    public ResponseEntity<President> getPresidentPassword() {
+        President president = service.getPresident();
+        return ResponseEntity.ok(president);
     }
-
-    @GetMapping(PRESIDENT_PATH + "/name")
-    @ApiOperation(value = "Получение имени старосты")
-    public ResponseEntity<String> getPresidentName() {
-        String name = service.getPresidentName();
-        return ResponseEntity.ok(name);
-    }
-
-    @PutMapping(PRESIDENT_PATH + "/password")
-    @ApiOperation(value = "Изменение пароля старосты")
-    public ResponseEntity<?> setPresidentPassword(@RequestHeader String userPassword) {
-        service.setPresidentPassword(userPassword);
-        return ResponseEntity.ok().build();
-    }
-
-    @PutMapping(PRESIDENT_PATH + "/name")
-    @ApiOperation(value = "Изменение имени старосты")
-    public ResponseEntity<?> setPresidentName(@RequestHeader String userName) {
-        service.setPresidentName(userName);
-        return ResponseEntity.ok().build();
-    }
-
 }

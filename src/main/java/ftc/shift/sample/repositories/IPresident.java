@@ -1,11 +1,7 @@
 package ftc.shift.sample.repositories;
 
+import ftc.shift.sample.models.President;
+
 public interface IPresident {
-    void setPresidentName(String name);
-
-    void setPresidentPassword(String password);
-
-    String getPresidentName();
-
-    String getPresidentPassword();
+    President getPresident();
 }

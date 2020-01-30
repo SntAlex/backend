@@ -15,27 +15,7 @@ public class PresidentRepository implements IPresident {
 
 
     @Override
-    public void setPresidentName(String name) {
-        if (name.isEmpty())
-            throw new BadRequest();
-        president.setName(name);
+    public President getPresident() {
+        return president;
     }
-
-    @Override
-    public void setPresidentPassword(String password) {
-        if (password.isEmpty())
-            throw new BadRequest();
-        president.setPassword(password);
-    }
-
-    @Override
-    public String getPresidentName() {
-        return president.getName();
-    }
-
-    @Override
-    public String getPresidentPassword() {
-        return president.getPassword();
-    }
-
 }

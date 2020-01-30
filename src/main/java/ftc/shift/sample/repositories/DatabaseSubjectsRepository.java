@@ -44,7 +44,7 @@ public class DatabaseSubjectsRepository implements ISubjects {
         this.jdbcTemplate = jdbcTemplate;
         this.subjectExtractor = subjectExtractor;
     }
-/*
+
     @PostConstruct
     public void initialize() {
         String createSubjectTableSql = "create table SUBJECTS (" +
@@ -57,7 +57,7 @@ public class DatabaseSubjectsRepository implements ISubjects {
                 ");";
         jdbcTemplate.update(createSubjectTableSql, new MapSqlParameterSource());
     }
-*/
+
 
         @Override
     public void addSubject(String dayName, Subject subject) {
