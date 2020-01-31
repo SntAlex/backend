@@ -44,7 +44,7 @@ public class DatabaseSubjectsRepository implements ISubjects {
         this.jdbcTemplate = jdbcTemplate;
         this.subjectExtractor = subjectExtractor;
     }
-
+/*
     @PostConstruct
     public void initialize() {
         String createSubjectTableSql = "create table SUBJECTS (" +
@@ -57,9 +57,26 @@ public class DatabaseSubjectsRepository implements ISubjects {
                 ");";
         jdbcTemplate.update(createSubjectTableSql, new MapSqlParameterSource());
     }
+*/
 
+    @Override
+    public void addAllSubjects(String dayName, Collection<Subject> subjects) {
+        checkDay(dayName);
+        for (Subject subject: subjects) {
+            String insertSubjectSql = "insert into SUBJECTS (SUBJECT_ID, DAY, NAME, AUDIENCE, TIME, NOTE) values (:subjectId, :dayName, :name, :audience, :time, :note)";
+            MapSqlParameterSource subjectParams = new MapSqlParameterSource()
+                    .addValue("subjectId", subject.getId())
+                    .addValue("dayName", dayName)
+                    .addValue("name", subject.getName())
+                    .addValue("audience", subject.getAudience())
+                    .addValue("time", subject.getTime())
+                    .addValue("note", subject.getNote());
 
-        @Override
+            jdbcTemplate.update(insertSubjectSql, subjectParams);
+        }
+    }
+
+    @Override
     public void addSubject(String dayName, Subject subject) {
             checkDay(dayName);
 
@@ -90,8 +107,9 @@ public class DatabaseSubjectsRepository implements ISubjects {
     @Override
     public void clearSubjects(String dayName) {
         checkDay(dayName);
-        String deleteSubjectsSql = "delete from SUBJECTS";
-        MapSqlParameterSource params = new MapSqlParameterSource();
+        String deleteSubjectsSql = "delete from SUBJECTS where SUBJECTS.DAY=:dayName";
+        MapSqlParameterSource params = new MapSqlParameterSource()
+                .addValue("dayName", dayName);;
         jdbcTemplate.update(deleteSubjectsSql, params);
     }
 

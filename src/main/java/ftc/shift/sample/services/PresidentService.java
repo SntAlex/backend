@@ -14,7 +14,7 @@ public class PresidentService {
         this.presidentRepository = presidentRepository;
     }
 
-    public President getPresident() {
-        return presidentRepository.getPresident();
+    public President fetchPresident() {
+        return presidentRepository.fetchPresident();
     }
 }

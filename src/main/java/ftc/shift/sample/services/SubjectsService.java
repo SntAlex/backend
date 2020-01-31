@@ -2,8 +2,6 @@ package ftc.shift.sample.services;
 
 import ftc.shift.sample.models.Subject;
 import ftc.shift.sample.repositories.DatabaseSubjectsRepository;
-import ftc.shift.sample.repositories.ISubjects;
-import ftc.shift.sample.repositories.SubjectsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,5 +38,9 @@ public class SubjectsService {
 
     public Subject fetchSubject(String dayName, Integer subjectId) {
         return databaseSubjectsRepository.fetchSubject(dayName, subjectId);
+    }
+
+    public void addAllSubjects(String dayName, Collection<Subject> subjects){
+        databaseSubjectsRepository.addAllSubjects(dayName, subjects);
     }
 }

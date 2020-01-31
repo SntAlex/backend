@@ -6,6 +6,8 @@ import java.util.Collection;
 
 public interface ISubjects {
 
+    void addAllSubjects(String dayName, Collection<Subject> subjects);
+
     void addSubject(String dayName, Subject subject);
 
     Collection<Subject> getAllSubjects(String dayName);

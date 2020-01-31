@@ -78,4 +78,13 @@ public class SubjectsController {
         Subject subject = subjectsService.fetchSubject(dayName, id);
         return ResponseEntity.ok(subject);
     }
+
+    @PostMapping(SUBJECTS_PATH + "/{dayName}/all")
+    @ApiOperation(value = "Добавление предметов в один день")
+    public ResponseEntity<?> addAllSubjects(
+            @PathVariable String dayName,
+            @RequestBody Collection<Subject> subjects) {
+        subjectsService.addAllSubjects(dayName, subjects);
+        return ResponseEntity.ok().build();
+    }
 }

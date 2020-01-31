@@ -15,7 +15,7 @@ public class PresidentRepository implements IPresident {
 
 
     @Override
-    public President getPresident() {
+    public President fetchPresident() {
         return president;
     }
 }
